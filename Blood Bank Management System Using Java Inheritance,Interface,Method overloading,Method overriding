@@ -1,0 +1,76 @@
+// Interface
+interface BloodService {
+    void checkAvailability();
+}
+
+// Parent Class
+class BloodBank {
+    static final String bankName = "Red Cross Blood Bank"; // static & final
+    String bloodGroup;
+
+    BloodBank(String bloodGroup) {
+        this.bloodGroup = bloodGroup; // this keyword
+    }
+
+    void displayBank() {
+        System.out.println("Blood Bank Name: " + bankName);
+    }
+
+    void checkAvailability() {
+        System.out.println("Checking blood availability...");
+    }
+}
+
+// Child Class (Inheritance + Method Overriding)
+class Donor extends BloodBank implements BloodService {
+    String donorName;
+    int age;
+
+    // Constructor using super
+    Donor(String bloodGroup, String donorName, int age) {
+        super(bloodGroup); // super keyword
+        this.donorName = donorName;
+        this.age = age;
+    }
+
+    // Method Overloading
+    void registerDonor(String donorName) {
+        System.out.println("Donor Registered: " + donorName);
+    }
+
+    void registerDonor(String donorName, int age) {
+        System.out.println("Donor Registered: " + donorName + ", Age: " + age);
+    }
+
+    // Method Overriding
+    public void checkAvailability() {
+        System.out.println("Blood Group " + bloodGroup + " is AVAILABLE");
+    }
+
+    void displayDonor() {
+        displayBank();
+        System.out.println("Donor Name: " + donorName);
+        System.out.println("Age: " + age);
+        System.out.println("Blood Group: " + bloodGroup);
+    }
+}
+
+// Main Class
+class BloodBankManagement {
+    public static void main(String[] args) {
+        Donor d1 = new Donor("O+", "Arun", 22);
+
+        d1.registerDonor("Arun");
+        d1.registerDonor("Arun", 22);
+        d1.displayDonor();
+        d1.checkAvailability();
+    }
+  output:-
+  Donor Registered: Mohamed Gouhser.N
+  Donor Registered: Mohamed Gouhser,age:21
+  Blood Bank Name: Red Cross Blood Bank
+  Donor Name: Mohamed Gouhser.N
+  Age: 21
+  Blood Group: O+
+  Blood Group O+ is AVAILABLE
+}
